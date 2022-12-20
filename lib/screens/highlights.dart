@@ -9,11 +9,15 @@ const Highlights({ Key? key }) : super(key: key);
   Widget build(BuildContext context){
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return HighlightItem(imageURI: items[index]["image"], itemTitle: items[index]["name"], itemPrice: items[index]["price"], itemDescription: items[index]["description"]);
-        },
-        itemCount: items.length,
+      child: CustomScrollView(
+        slivers: <Widget>[
+          SliverToBoxAdapter(child: Text("Destaques")),
+          SliverList(delegate: SliverChildBuilderDelegate((context, index) {
+            return HighlightItem(imageURI: items[index]['image'], itemTitle: items[index]['name'], itemPrice: items[index]['price'], itemDescription: items[index]['description']);
+          },
+          childCount: items.length,
+          ))
+        ],
       ),
     );
   }
