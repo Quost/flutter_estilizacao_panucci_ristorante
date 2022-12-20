@@ -8,10 +8,13 @@ const Highlights({ Key? key }) : super(key: key);
   @override
   Widget build(BuildContext context){
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
       child: CustomScrollView(
         slivers: <Widget>[
-          SliverToBoxAdapter(child: Text("Destaques")),
+          const SliverToBoxAdapter(child: Padding(
+            padding: EdgeInsets.only(bottom: 16.0),
+            child: Text("Destaques", style: TextStyle(fontFamily: "Caveat", fontSize: 32), textAlign: TextAlign.center,),
+          )),
           SliverList(delegate: SliverChildBuilderDelegate((context, index) {
             return HighlightItem(imageURI: items[index]['image'], itemTitle: items[index]['name'], itemPrice: items[index]['price'], itemDescription: items[index]['description']);
           },
